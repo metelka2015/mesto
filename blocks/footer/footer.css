@@ -1,18 +1,18 @@
-.elements {
+.footer {
   max-width: 880px;
-  margin: 0  auto 67px;
+  margin: 0 auto 60px;
 }
 
 @media screen and (max-width: 1100px) {
-  .elements {
+  .footer {
     max-width: 80%;
   }
 }
 
 
 @media screen and (max-width: 810px) {
-  .elements {
+  .footer {
     max-width: 282px;
-    margin: 0  auto 48px;
+    margin: 0  auto 36px;
   }
 }

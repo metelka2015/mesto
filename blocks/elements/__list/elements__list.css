@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 810px) {
-  .element__list {
-    gap: 20px;
+  .elements__list {
+    gap: 21px;
   }
 }
