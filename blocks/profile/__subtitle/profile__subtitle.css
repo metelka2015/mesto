@@ -10,11 +10,10 @@
   color: #fff;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 810px) {
   .profile__subtitle {
     max-width: 282px;
     font-size: 14px;
     line-height: 17px;
-
   }
 }
