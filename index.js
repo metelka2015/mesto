@@ -1,12 +1,12 @@
-const editButtonLink = document.querySelector('.profile__edit-button-link');
-const editButtonPopup = document.querySelector('.popup_type_profile');
+const editButtonLink = document.querySelector('.profile__edit-button');
+const editButtonPopup = document.querySelector('.popup');
 const editButtonPopupCloseButton = editButtonPopup.querySelector('.popup__close');
 const nameInput = editButtonPopup.querySelector('.popup__input_type_name');
 const jobInput = editButtonPopup.querySelector('.popup__input_type_job');
 const editButtonPopupSubmit = editButtonPopup.querySelector('.popup__submit');
 const editButtonPopupForm = editButtonPopup.querySelector('.popup__form');
 const profileName = document.querySelector('.profile__title');
-const profileJob = document.querySelector('.profile__subtitle')
+const profileJob = document.querySelector('.profile__subtitle');
 
 function handleClick() {
   editButtonPopup.classList.add('popup_open');

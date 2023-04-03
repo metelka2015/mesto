@@ -18,12 +18,12 @@
           <div class="profile__info">
             <div class="profile__title-container">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button profile__edit-button-link"></button>
+              <button class="profile__edit-button" type="button"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
         <ul class="elements__list">
@@ -31,7 +31,7 @@
             <img src="./images/image-karachaevsk.jpg" alt="картинка Карачаевск" class="element__image">
             <div class="element__container">
               <h2 class="element__title">Карачаевск</h2>
-              <button class="element__like-button"></button>
+              <button class="element__like-button" type="button"></button>
             </div>
           </li>
           <li class="element">
@@ -76,11 +76,11 @@
       <p class="footer__copyright">&COPY; 2020 Mesto Russia</p>
     </footer>
   </div>
-  <section class="popup popup_type_profile">
+  <section class="popup">
     <div class="popup__container">
-      <button class="popup__close"></button>
+      <button class="popup__close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
+      <form class="popup__form" name="popup-profile-form">
         <label><input class="popup__input popup__input_type_name" name="name"></label>
         <label><input class="popup__input popup__input_type_job" name="job"></label>
         <button class="popup__submit" type="submit">Сохранить</button>
