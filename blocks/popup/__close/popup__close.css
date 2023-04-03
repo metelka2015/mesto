@@ -4,7 +4,7 @@
 
 .popup__close {
   position: absolute;
-  background-image: url(../../../images/close-button.png);
+  background-image: url(../../../images/close-button.svg);
   width: 32px;
   height: 32px;
   background-repeat: no-repeat;
