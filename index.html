@@ -23,7 +23,7 @@
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="profile__add-button profile__add-button-link" type="button"></button>
       </section>
       <section class="elements">
         <ul class="elements__list">
@@ -76,7 +76,7 @@
       <p class="footer__copyright">&COPY; 2020 Mesto Russia</p>
     </footer>
   </div>
-  <section class="popup">
+  <section class="popup popup_type_profile">
     <div class="popup__container">
       <button class="popup__close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -84,6 +84,17 @@
         <label><input class="popup__input popup__input_type_name" name="name"></label>
         <label><input class="popup__input popup__input_type_job" name="job"></label>
         <button class="popup__submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_type_place">
+    <div class="popup__container">
+      <button class="popup__close" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="popup-profile-form">
+        <label><input class="popup__input popup__input_type_placename" name="placename" placeholder="Название"></label>
+        <label><input class="popup__input popup__input_type_placelink" name="placelink" placeholder="Ссылка на картинку"></label>
+        <button class="popup__submit" type="submit">Создать</button>
       </form>
     </div>
   </section>
