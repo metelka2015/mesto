@@ -1,4 +1,3 @@
-
 const editButtonLink = document.querySelector('.profile__edit-button');
 const editButtonPopup = document.querySelector('.popup_type_profile');
 const editButtonPopupClose = editButtonPopup.querySelector('.popup__close');
@@ -17,6 +16,8 @@ const addButtonPopupSubmit = addButtonPopup.querySelector('.popup__submit');
 const templatePlace = document.getElementById('place-template');
 const elementsList = document.querySelector('.elements__list');
 const addButtonPopupForm = addButtonPopup.querySelector('.popup__form_type_place');
+const viewerImagePopup = document.querySelector('.popup_type_image');
+const viewerImagePopupClose = viewerImagePopup.querySelector('.popup__close');
 
 const createCardElement = (cardData) => {
   const cardElement = templatePlace.content
@@ -32,6 +33,7 @@ const createCardElement = (cardData) => {
 
   const deleteButton = cardElement.querySelector('.element__delete-button');
   const likeButton = cardElement.querySelector('.element__like-button');
+  const viewerImage = cardElement.querySelector('.element__image');
 
   const handleDelete = () => {
     cardElement.remove();
@@ -41,9 +43,21 @@ const createCardElement = (cardData) => {
     likeButton.classList.toggle('element__like-button_active');
   }
 
+  const handleViewer = () => {
+    openPopup(viewerImagePopup);
+    const image = viewerImagePopup.querySelector('.popup__image');
+    const figcaption = viewerImagePopup.querySelector('.popup__caption');
+
+    image.src = cardData.link;
+    figcaption.textContent = cardData.name;
+    image.alt = cardData.name;
+  }
+
   deleteButton.addEventListener('click', handleDelete);
 
   likeButton.addEventListener('click', handleLike);
+
+  viewerImage.addEventListener('click',handleViewer)
 
   return cardElement;
 }
@@ -108,6 +122,10 @@ addButtonLink.addEventListener('click', () => {
 
 addButtonPopupClose.addEventListener('click', () => {
   closePopup(addButtonPopup);
+});
+
+viewerImagePopupClose.addEventListener('click', () => {
+  closePopup(viewerImagePopup);
 });
 
 addButtonPopupForm.addEventListener('submit', handleAddCardSubmit);
