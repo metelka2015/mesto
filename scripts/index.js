@@ -1,6 +1,5 @@
 const editButtonLink = document.querySelector('.profile__edit-button');
 const editButtonPopup = document.querySelector('.popup_type_profile');
-const editButtonPopupClose = editButtonPopup.querySelector('.popup__close');
 const nameInput = editButtonPopup.querySelector('.popup__input_type_name');
 const jobInput = editButtonPopup.querySelector('.popup__input_type_job');
 const editButtonPopupSubmit = editButtonPopup.querySelector('.popup__submit');
@@ -10,14 +9,19 @@ const profileJob = document.querySelector('.profile__subtitle');
 
 const addButtonLink = document.querySelector('.profile__add-button-link');
 const addButtonPopup = document.querySelector('.popup_type_place');
-const addButtonPopupClose = addButtonPopup.querySelector('.popup__close');
 const addButtonPopupSubmit = addButtonPopup.querySelector('.popup__submit');
+const addButtonPopupForm = addButtonPopup.querySelector('.popup__form_type_place');
+const placeNameInput = addButtonPopup.querySelector('.popup__input_type_placename');
+const placeLinkInput = addButtonPopup.querySelector('.popup__input_type_placelink');
 
 const templatePlace = document.getElementById('place-template');
 const elementsList = document.querySelector('.elements__list');
-const addButtonPopupForm = addButtonPopup.querySelector('.popup__form_type_place');
+
 const viewerImagePopup = document.querySelector('.popup_type_image');
-const viewerImagePopupClose = viewerImagePopup.querySelector('.popup__close');
+const image = viewerImagePopup.querySelector('.popup__image');
+const figcaption = viewerImagePopup.querySelector('.popup__caption');
+
+const closeButtons = document.querySelectorAll('.popup__close');
 
 const createCardElement = (cardData) => {
   const cardElement = templatePlace.content
@@ -33,7 +37,6 @@ const createCardElement = (cardData) => {
 
   const deleteButton = cardElement.querySelector('.element__delete-button');
   const likeButton = cardElement.querySelector('.element__like-button');
-  const viewerImage = cardElement.querySelector('.element__image');
 
   const handleDelete = () => {
     cardElement.remove();
@@ -45,8 +48,6 @@ const createCardElement = (cardData) => {
 
   const handleViewer = () => {
     openPopup(viewerImagePopup);
-    const image = viewerImagePopup.querySelector('.popup__image');
-    const figcaption = viewerImagePopup.querySelector('.popup__caption');
 
     image.src = cardData.link;
     figcaption.textContent = cardData.name;
@@ -57,16 +58,13 @@ const createCardElement = (cardData) => {
 
   likeButton.addEventListener('click', handleLike);
 
-  viewerImage.addEventListener('click',handleViewer)
+  cardImage.addEventListener('click',handleViewer)
 
   return cardElement;
 }
 
 const handleAddCardSubmit = (event) => {
   event.preventDefault();
-
-  const placeNameInput = addButtonPopup.querySelector('.popup__input_type_placename');
-  const placeLinkInput = addButtonPopup.querySelector('.popup__input_type_placelink');
 
   const name = placeNameInput.value;
   const link = placeLinkInput.value;
@@ -76,7 +74,10 @@ const handleAddCardSubmit = (event) => {
     link,
   }
 
+  event.target.reset();
+
   renderCardElement(createCardElement(cardData));
+
   closePopup(addButtonPopup);
 }
 
@@ -84,8 +85,14 @@ const renderCardElement = (cardElement) => {
   elementsList.prepend(cardElement);
 }
 
-initialCards.forEach((Cards) => {
-  renderCardElement(createCardElement(Cards));
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+
+  button.addEventListener('click', () => closePopup(popup));
+});
+
+initialCards.forEach((card) => {
+  renderCardElement(createCardElement(card));
 })
 
 function openPopup(popup) {
@@ -96,37 +103,25 @@ function closePopup (popup) {
   popup.classList.remove('popup_opened');
 }
 
-function handleClick() {
+function openProfilePopup() {
   openPopup(editButtonPopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
 
-function handleSubmit(event) {
+function handleProfileFormSubmit(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(editButtonPopup);
 }
 
-editButtonLink.addEventListener('click', handleClick);
-editButtonPopupForm.addEventListener('submit', handleSubmit);
-
-editButtonPopupClose.addEventListener('click', () => {
-  closePopup(editButtonPopup);
-});
+editButtonLink.addEventListener('click', openProfilePopup);
+editButtonPopupForm.addEventListener('submit', handleProfileFormSubmit);
 
 addButtonLink.addEventListener('click', () => {
   openPopup(addButtonPopup);
 })
-
-addButtonPopupClose.addEventListener('click', () => {
-  closePopup(addButtonPopup);
-});
-
-viewerImagePopupClose.addEventListener('click', () => {
-  closePopup(viewerImagePopup);
-});
 
 addButtonPopupForm.addEventListener('submit', handleAddCardSubmit);
 
