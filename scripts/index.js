@@ -78,6 +78,12 @@ const handleAddCardSubmit = (event) => {
 
   event.target.reset();
 
+  event.submitter.classList.add('popup__submit_disabled');
+  event.submitter.disabled = true;
+  console.log(event.submitter);
+
+
+
   renderCardElement(createCardElement(cardData));
 
   closePopup(addButtonPopup);
@@ -97,13 +103,16 @@ initialCards.forEach((card) => {
   renderCardElement(createCardElement(card));
 })
 
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup);
-    };
-  });
+  document.addEventListener('keydown', closeByEsc);
 }
 
 function closePopup (popup) {

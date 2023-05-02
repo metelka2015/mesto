@@ -43,15 +43,13 @@ function toggleButtonValidity (config, form) {
   }
 }
 
-function setSubmitListener (config, form) {
-  form.addEventListener('submit', function (evt) {
+/*function setSubmitListener (config, form) {
+  /* form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-
-    //form.reset();
 
     toggleButtonValidity(config, form);
   });
-}
+}*/
 
 function getInputs (config, form) {
   const inputs = form.querySelectorAll(config.inputSelector);
@@ -70,18 +68,11 @@ function enableValidation (config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
 
   formList.forEach((form) => {
-    setSubmitListener(config, form);
+    /*setSubmitListener(config, form);*/
     toggleButtonValidity(config, form);
     getInputs(config, form);
     });
-
-
-  //const form = document.querySelector(config.formSelector);
-
-
 }
-
-
 
 enableValidation({
   formSelector: '.popup__form',
