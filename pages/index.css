@@ -42,3 +42,4 @@
 @import url(../blocks/popup/_type_image/popup_type_image.css);
 @import url(../blocks/popup/__error-message/popup__error-message.css);
 @import url(../blocks/popup/__error-message/_visible/popup__error-message_visible.css);
+@import url(../blocks/popup/__label/popup__label.css);
