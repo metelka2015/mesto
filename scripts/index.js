@@ -80,9 +80,6 @@ const handleAddCardSubmit = (event) => {
 
   event.submitter.classList.add('popup__submit_disabled');
   event.submitter.disabled = true;
-  console.log(event.submitter);
-
-
 
   renderCardElement(createCardElement(cardData));
 
@@ -115,8 +112,14 @@ function openPopup(popup) {
   document.addEventListener('keydown', closeByEsc);
 }
 
+function openPopupAddCard() {
+  openPopup(addButtonPopup);
+  addButtonPopupForm.reset();
+}
+
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
 }
 
 function openProfilePopup() {
@@ -148,7 +151,7 @@ editButtonLink.addEventListener('click', openProfilePopup);
 editButtonPopupForm.addEventListener('submit', handleProfileFormSubmit);
 
 addButtonLink.addEventListener('click', () => {
-  openPopup(addButtonPopup);
+  openPopupAddCard(addButtonPopup);
 })
 
 addButtonPopupForm.addEventListener('submit', handleAddCardSubmit);
