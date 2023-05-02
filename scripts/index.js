@@ -23,6 +23,8 @@ const figcaption = viewerImagePopup.querySelector('.popup__caption');
 
 const closeButtons = document.querySelectorAll('.popup__close');
 
+const popupAll = Array.from(document.querySelectorAll('.popup'));
+
 const createCardElement = (cardData) => {
   const cardElement = templatePlace.content
     .querySelector('.element')
@@ -97,6 +99,11 @@ initialCards.forEach((card) => {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+    };
+  });
 }
 
 function closePopup (popup) {
@@ -116,6 +123,18 @@ function handleProfileFormSubmit(event) {
   closePopup(editButtonPopup);
 }
 
+popupAll.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  });
+});
+
+
 editButtonLink.addEventListener('click', openProfilePopup);
 editButtonPopupForm.addEventListener('submit', handleProfileFormSubmit);
 
@@ -124,7 +143,6 @@ addButtonLink.addEventListener('click', () => {
 })
 
 addButtonPopupForm.addEventListener('submit', handleAddCardSubmit);
-
 
 
 
