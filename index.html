@@ -33,13 +33,20 @@
       <p class="footer__copyright">&COPY; 2020 Mesto Russia</p>
     </footer>
   </div>
+
   <section class="popup popup_type_profile">
     <div class="popup__container">
       <button class="popup__close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form popup__form_type_profile" name="popup-profile-form">
-        <label><input class="popup__input popup__input_type_name" name="name"></label>
-        <label><input class="popup__input popup__input_type_job" name="job"></label>
+      <form class="popup__form popup__form_type_profile" name="popup-profile-form" novalidate>
+        <label>
+          <input id="name" class="popup__input popup__input_type_name" required minlength="2" maxlength="40" name="name" autocomplete="off">
+          <span id="error-name" class="popup__error-message"></span>
+        </label>
+        <label>
+          <input id="job" class="popup__input popup__input_type_job" required minlength="2" maxlength="200" name="job" autocomplete="off">
+          <span id="error-job" class="popup__error-message"></span>
+        </label>
         <button class="popup__submit" type="submit">Сохранить</button>
       </form>
     </div>
@@ -48,9 +55,15 @@
     <div class="popup__container">
       <button class="popup__close" type="button"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_type_place" name="popup-profile-form">
-        <label><input class="popup__input popup__input_type_placename" name="placename" placeholder="Название"></label>
-        <label><input class="popup__input popup__input_type_placelink" name="placelink" placeholder="Ссылка на картинку"></label>
+      <form class="popup__form popup__form_type_place" name="popup-profile-form" novalidate>
+        <label>
+          <input id="placename" class="popup__input popup__input_type_placename" required minlength="2" maxlength="30" name="placename" placeholder="Название" autocomplete="off">
+          <span id="error-placename" class="popup__error-message"></span>
+        </label>
+        <label>
+          <input id="placelink" type="url" class="popup__input popup__input_type_placelink" required name="placelink" placeholder="Ссылка на картинку" autocomplete="off">
+          <span id="error-placelink" class="popup__error-message"></span>
+        </label>
         <button class="popup__submit" type="submit">Создать</button>
       </form>
     </div>
@@ -76,6 +89,7 @@
     </li>
   </template>
   <script src="./scripts/constants.js"></script>
+  <script src="./scripts/validate copy.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
