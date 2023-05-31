@@ -1,69 +1,35 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import { initialCards } from './constants.js';
+
+
+
 const editButtonLink = document.querySelector('.profile__edit-button');
 const editButtonPopup = document.querySelector('.popup_type_profile');
 const nameInput = editButtonPopup.querySelector('.popup__input_type_name');
 const jobInput = editButtonPopup.querySelector('.popup__input_type_job');
-const editButtonPopupSubmit = editButtonPopup.querySelector('.popup__submit');
+
 const editButtonPopupForm = editButtonPopup.querySelector('.popup__form_type_profile');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
 
 const addButtonLink = document.querySelector('.profile__add-button-link');
 const addButtonPopup = document.querySelector('.popup_type_place');
-const addButtonPopupSubmit = addButtonPopup.querySelector('.popup__submit');
+
 const addButtonPopupForm = addButtonPopup.querySelector('.popup__form_type_place');
 const placeNameInput = addButtonPopup.querySelector('.popup__input_type_placename');
 const placeLinkInput = addButtonPopup.querySelector('.popup__input_type_placelink');
 
-const templatePlace = document.getElementById('place-template');
 const elementsList = document.querySelector('.elements__list');
-
-const viewerImagePopup = document.querySelector('.popup_type_image');
-const image = viewerImagePopup.querySelector('.popup__image');
-const figcaption = viewerImagePopup.querySelector('.popup__caption');
 
 const closeButtons = document.querySelectorAll('.popup__close');
 
 const popupAll = Array.from(document.querySelectorAll('.popup'));
 
-const createCardElement = (cardData) => {
-  const cardElement = templatePlace.content
-    .querySelector('.element')
-    .cloneNode(true);
+const viewerImagePopup = document.querySelector('.popup_type_image');
+const image = viewerImagePopup.querySelector('.popup__image');
+const figcaption = viewerImagePopup.querySelector('.popup__caption');
 
-  const cardName = cardElement.querySelector('.element__title');
-  const cardImage = cardElement.querySelector('.element__image');
-
-  cardName.textContent = cardData.name;
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-
-  const deleteButton = cardElement.querySelector('.element__delete-button');
-  const likeButton = cardElement.querySelector('.element__like-button');
-
-  const handleDelete = () => {
-    cardElement.remove();
-  }
-
-  const handleLike = () => {
-    likeButton.classList.toggle('element__like-button_active');
-  }
-
-  const handleViewer = () => {
-    openPopup(viewerImagePopup);
-
-    image.src = cardData.link;
-    figcaption.textContent = cardData.name;
-    image.alt = cardData.name;
-  }
-
-  deleteButton.addEventListener('click', handleDelete);
-
-  likeButton.addEventListener('click', handleLike);
-
-  cardImage.addEventListener('click',handleViewer)
-
-  return cardElement;
-}
 
 const handleAddCardSubmit = (event) => {
   event.preventDefault();
@@ -81,7 +47,10 @@ const handleAddCardSubmit = (event) => {
   event.submitter.classList.add('popup__submit_disabled');
   event.submitter.disabled = true;
 
-  renderCardElement(createCardElement(cardData));
+  const card = new Card(cardData, '.place-template');
+  const cardElement = card.generateCard();
+
+  renderCardElement(cardElement);
 
   closePopup(addButtonPopup);
 }
@@ -96,9 +65,12 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 
-initialCards.forEach((card) => {
-  renderCardElement(createCardElement(card));
+initialCards.forEach((item) => {
+  const card = new Card(item, '.place-template');
+  const cardElement = card.generateCard();
+  renderCardElement(cardElement);
 })
+
 
 function closeByEsc(evt) {
   if (evt.key === 'Escape') {
@@ -157,6 +129,25 @@ addButtonLink.addEventListener('click', () => {
 addButtonPopupForm.addEventListener('submit', handleAddCardSubmit);
 
 
+const enableValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_invalid',
+  errorClass: 'popup__error-message_visible'
+};
 
+
+
+const profileValidator = new FormValidator(enableValidation, editButtonPopupForm);
+const cardValidator = new FormValidator(enableValidation, addButtonPopupForm);
+
+profileValidator.enableValidation();
+cardValidator.enableValidation();
+
+
+
+export { openPopup, viewerImagePopup, image, figcaption };
 
 
