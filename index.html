@@ -18,12 +18,12 @@
           <div class="profile__info">
             <div class="profile__title-container">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button" type="button"></button>
+              <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button profile__add-button-link" type="button"></button>
+        <button class="profile__add-button profile__add-button-link" type="button" aria-label="Добавить"></button>
       </section>
       <section class="elements" aria-label="Фотографии мест">
         <ul class="elements__list"></ul>
@@ -36,15 +36,15 @@
 
   <section class="popup popup_type_profile">
     <div class="popup__container">
-      <button class="popup__close" type="button"></button>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_type_profile" name="popup-profile-form" novalidate>
         <label class="popup__label">
-          <input id="name" class="popup__input popup__input_type_name" required minlength="2" maxlength="40" name="name" autocomplete="off">
+          <input id="name" class="popup__input popup__input_type_name" required minlength="2" maxlength="40" name="name" autocomplete="off" placeholder="Имя">
           <span id="error-name" class="popup__error-message"></span>
         </label>
         <label class="popup__label">
-          <input id="job" class="popup__input popup__input_type_job" required minlength="2" maxlength="200" name="job" autocomplete="off">
+          <input id="job" class="popup__input popup__input_type_job" required minlength="2" maxlength="200" name="job" autocomplete="off" placeholder="О себе">
           <span id="error-job" class="popup__error-message"></span>
         </label>
         <button class="popup__submit" type="submit">Сохранить</button>
@@ -53,7 +53,7 @@
   </section>
   <section class="popup popup_type_place">
     <div class="popup__container">
-      <button class="popup__close" type="button"></button>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_type_place" name="popup-profile-form" novalidate>
         <label class="popup__label">
@@ -70,7 +70,7 @@
   </section>
   <section class="popup popup_type_image" aria-label="Просмотр картинки">
     <div class="popup__image-container">
-      <button class="popup__close" type="button"></button>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
       <figure class="popup__figure">
         <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" class="popup__image" alt="картинка Карачаевск">
         <figcaption class="popup__caption">Карачаевск</figcaption>
@@ -81,10 +81,10 @@
   <template class="place-template">
     <li class="element">
       <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="картинка Карачаевск" class="element__image">
-      <button class="element__delete-button" type="button"></button>
+      <button class="element__delete-button" type="button" aria-label="Удалить"></button>
       <div class="element__container">
         <h2 class="element__title">Карачаевск</h2>
-        <button class="element__like-button" type="button"></button>
+        <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
       </div>
     </li>
   </template>
