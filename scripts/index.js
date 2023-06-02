@@ -107,6 +107,13 @@ function handleProfileFormSubmit(event) {
   closePopup(editButtonPopup);
 }
 
+function handleOpenPopup(name, link) {
+  image.src = link;
+  figcaption.textContent = name;
+  image.alt = name;
+  openPopup(viewerImagePopup);
+}
+
 popupAll.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
@@ -148,6 +155,6 @@ cardValidator.enableValidation();
 
 
 
-export { openPopup, viewerImagePopup, image, figcaption };
+export { handleOpenPopup, openPopup, viewerImagePopup, image, figcaption };
 
 

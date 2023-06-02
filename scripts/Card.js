@@ -1,4 +1,4 @@
-import { openPopup, viewerImagePopup, image, figcaption } from './index.js';
+import { handleOpenPopup } from './index.js';
 
 class Card {
   constructor(data, templateSelector) {
@@ -19,11 +19,15 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.element__image');
+    this._likeButton = this._element.querySelector('.element__like-button');
+    this._deleteButton = this._element.querySelector('.element__delete-button');
+
     this._setEventListeners();
 
     this._element.querySelector('.element__title').textContent = this._name;
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
 
     return this._element;
   }
@@ -33,35 +37,24 @@ class Card {
   }
 
   _handleLike = () => {
-    const likeButton = this._element.querySelector('.element__like-button');
-    likeButton.classList.toggle('element__like-button_active');
+    this._likeButton.classList.toggle('element__like-button_active');
   }
 
   _handleViewer = () => {
-    openPopup(viewerImagePopup);
+    handleOpenPopup(this._name, this._link);
 
-    image.src = this._link;
+    /*image.src = this._link;
     figcaption.textContent = this._name;
-    image.alt = this._name;
+    image.alt = this._name;*/
   }
 
   _setEventListeners() {
-    const deleteButton = this._element.querySelector('.element__delete-button');
-    deleteButton.addEventListener('click', () => {
-      this._handleDelete();
-    });
+    this._deleteButton.addEventListener('click', this._handleDelete);
 
-    const likeButton = this._element.querySelector('.element__like-button');
-    likeButton.addEventListener('click', () => {
-      this._handleLike();
-    });
+    this._likeButton.addEventListener('click', this._handleLike);
 
-    const cardImage = this._element.querySelector('.element__image');
-    cardImage.addEventListener('click', () => {
-      this._handleViewer();
-    });
+    this._cardImage.addEventListener('click', this._handleViewer);
   }
 }
-
 
 export default Card;
