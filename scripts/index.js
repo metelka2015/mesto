@@ -1,7 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-import { initialCards } from './constants.js';
-
+import { initialCards, validationConfig } from './constants.js';
 
 
 const editButtonLink = document.querySelector('.profile__edit-button');
@@ -44,33 +43,16 @@ const handleAddCardSubmit = (event) => {
 
   event.target.reset();
 
-  event.submitter.classList.add('popup__submit_disabled');
-  event.submitter.disabled = true;
-
-  const card = new Card(cardData, '.place-template');
-  const cardElement = card.generateCard();
-
-  renderCardElement(cardElement);
+  renderCardElement(createCard(cardData));
 
   closePopup(addButtonPopup);
+
+  cardValidator.toggleButtonValidity();
 }
 
 const renderCardElement = (cardElement) => {
   elementsList.prepend(cardElement);
 }
-
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-
-  button.addEventListener('click', () => closePopup(popup));
-});
-
-initialCards.forEach((item) => {
-  const card = new Card(item, '.place-template');
-  const cardElement = card.generateCard();
-  renderCardElement(cardElement);
-})
-
 
 function closeByEsc(evt) {
   if (evt.key === 'Escape') {
@@ -114,47 +96,46 @@ function handleOpenPopup(name, link) {
   openPopup(viewerImagePopup);
 }
 
+function createCard(cardData) {
+  const card = new Card(cardData, '.place-template', handleOpenPopup);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
 popupAll.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup__close')) {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
       closePopup(popup);
     }
   });
 });
 
+initialCards.forEach((item) => {
+  renderCardElement(createCard(item));
+})
+
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+
+  button.addEventListener('click', () => closePopup(popup));
+});
+
 
 editButtonLink.addEventListener('click', openProfilePopup);
 editButtonPopupForm.addEventListener('submit', handleProfileFormSubmit);
-
 addButtonLink.addEventListener('click', () => {
   openPopupAddCard(addButtonPopup);
 })
-
 addButtonPopupForm.addEventListener('submit', handleAddCardSubmit);
 
 
-const enableValidation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input_invalid',
-  errorClass: 'popup__error-message_visible'
-};
-
-
-
-const profileValidator = new FormValidator(enableValidation, editButtonPopupForm);
-const cardValidator = new FormValidator(enableValidation, addButtonPopupForm);
+const profileValidator = new FormValidator(validationConfig, editButtonPopupForm);
+const cardValidator = new FormValidator(validationConfig, addButtonPopupForm);
 
 profileValidator.enableValidation();
 cardValidator.enableValidation();
 
 
 
-export { handleOpenPopup, openPopup, viewerImagePopup, image, figcaption };
 
 

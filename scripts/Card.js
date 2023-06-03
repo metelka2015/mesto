@@ -1,10 +1,10 @@
-import { handleOpenPopup } from './index.js';
-
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleOpenPopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleOpenPopup = handleOpenPopup;
+
   }
 
   _getTemplate() {
@@ -41,11 +41,7 @@ class Card {
   }
 
   _handleViewer = () => {
-    handleOpenPopup(this._name, this._link);
-
-    /*image.src = this._link;
-    figcaption.textContent = this._name;
-    image.alt = this._name;*/
+    this._handleOpenPopup(this._name, this._link);
   }
 
   _setEventListeners() {
