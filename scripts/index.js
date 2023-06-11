@@ -2,6 +2,7 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import { initialCards, validationConfig } from './constants.js';
 import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 
 
 const editButtonLink = document.querySelector('.profile__edit-button');
@@ -24,13 +25,13 @@ const elementsList = document.querySelector('.elements__list');
 
 const closeButtons = document.querySelectorAll('.popup__close');
 
-const popupAll = Array.from(document.querySelectorAll('.popup'));
+//const popupAll = Array.from(document.querySelectorAll('.popup'));
 
-const viewerImage = document.querySelector('.popup_type_image');
-const image = viewerImage.querySelector('.popup__image');
-const figcaption = viewerImage.querySelector('.popup__caption');
+//const viewerImage = document.querySelector('.popup_type_image');
+//const image = viewerImage.querySelector('.popup__image');
+//const figcaption = viewerImage.querySelector('.popup__caption');
 
-const viewerImagePopup = new Popup('.popup_type_image');
+const viewerImagePopup = new PopupWithImage('.popup_type_image');
 viewerImagePopup.setEventListeners();
 
 const handleAddCardSubmit = (event) => {
@@ -92,11 +93,11 @@ function handleProfileFormSubmit(event) {
   closePopup(editButtonPopup);
 }
 
-function handleOpenPopup(name, link) {
-  image.src = link;
-  figcaption.textContent = name;
-  image.alt = name;
-  viewerImagePopup.open();
+function handleOpenPopup() {
+  //image.src = link;
+  //figcaption.textContent = name;
+  //image.alt = name;
+  viewerImagePopup.open(this._name, this._link);
 }
 
 function createCard(cardData) {
