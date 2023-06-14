@@ -4,6 +4,7 @@ import { initialCards, validationConfig } from './constants.js';
 import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 
 const editButtonLink = document.querySelector('.profile__edit-button');
@@ -38,8 +39,13 @@ const cardValidator = new FormValidator(validationConfig, addButtonPopupForm);
 profileValidator.enableValidation();
 cardValidator.enableValidation();
 
-const popupFormProfile = new PopupWithForm('.popup_type_profile', handleProfileFormSubmit);
+const popupFormProfile = new PopupWithForm('.popup_type_profile', (data) => {
+  userInfo.setUserInfo(data);
+  popupFormProfile.close();
+});
+
 popupFormProfile.setEventListeners();
+
 
 const popupFormCard = new PopupWithForm('.popup_type_place', handleAddCardSubmit);
 popupFormCard.setEventListeners();
@@ -47,7 +53,7 @@ popupFormCard.setEventListeners();
 const PopupImage = new PopupWithImage('.popup_type_image');
 PopupImage.setEventListeners();
 
-
+const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
 
 const handleAddCardSubmit = (event) => {
  event.preventDefault();
@@ -107,7 +113,7 @@ function handleProfileFormSubmit(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  /*popupFormProfile.close();*/
+  popupFormProfile.close();
 }
 
 function handleOpenPopup() {
@@ -118,7 +124,8 @@ function handleOpenPopup() {
 }
 
 function createCard(cardData) {
-  const card = new Card(cardData, '.place-template', handleOpenPopup);
+  const card = new Card(cardData, '.place-template', (cardData) => {
+    PopupImage.open(cardData.name, cardData.link)});
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -146,14 +153,22 @@ initialCards.forEach((item) => {
 
 
 editButtonLink.addEventListener('click', () => {
-  popupFormProfile.open()});
+  const getUserInfo = userInfo.getUserInfo();
+  nameInput.value = getUserInfo.textContent;
+  jobInput.value = getUserInfo.textContent;
+  popupFormProfile.open();
+  });
+
+  
+
+
 /*editButtonPopupForm.addEventListener('submit', handleProfileFormSubmit);*/
 addButtonLink.addEventListener('click', () => {
   popupFormCard.open();
 })
 addButtonPopupForm.addEventListener('submit', handleAddCardSubmit);
 
-
+export { profileName, profileJob };
 
 
 
