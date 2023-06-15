@@ -16,7 +16,8 @@ import {
   addButtonPopupForm,
   placeNameInput,
   placeLinkInput
-  } from './constants.js'
+  } from './constants.js';
+import '../pages/index.css';
 
 
 const profileValidator = new FormValidator(validationConfig, editButtonPopupForm);
