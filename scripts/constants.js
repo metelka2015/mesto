@@ -34,5 +34,31 @@ const validationConfig = {
   errorClass: 'popup__error-message_visible'
 };
 
+const editButtonLink = document.querySelector('.profile__edit-button');
+const editButtonPopup = document.querySelector('.popup_type_profile');
+const nameInput = editButtonPopup.querySelector('.popup__input_type_name');
+const jobInput = editButtonPopup.querySelector('.popup__input_type_job');
 
-export { initialCards, validationConfig };
+const editButtonPopupForm = editButtonPopup.querySelector('.popup__form_type_profile');
+
+const addButtonLink = document.querySelector('.profile__add-button-link');
+const addButtonPopup = document.querySelector('.popup_type_place');
+
+const addButtonPopupForm = addButtonPopup.querySelector('.popup__form_type_place');
+const placeNameInput = addButtonPopup.querySelector('.popup__input_type_placename');
+const placeLinkInput = addButtonPopup.querySelector('.popup__input_type_placelink');
+
+
+export {
+  initialCards,
+  validationConfig,
+  editButtonLink,
+  editButtonPopup,
+  nameInput,
+  jobInput,
+  editButtonPopupForm,
+  addButtonLink,
+  addButtonPopup,
+  addButtonPopupForm,
+  placeNameInput,
+  placeLinkInput };
