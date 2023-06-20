@@ -106,9 +106,9 @@ const popupFormCard = new PopupWithForm(".popup_type_place", (cardData) => {
 popupFormCard.setEventListeners();
 
 const popupDeleteCard = new PopupDeleteCard('.popup_type_delete');
-popupDeleteCard.setEventListeners;
+popupDeleteCard.setEventListeners();
 
-const createCard = (cardData) => {
+function createCard(cardData) {
 
   const card = new Card({
     data: cardData,

@@ -35,12 +35,13 @@ constructor({data, profileInfo, templateSelector, handleCardClick, handleDeleteC
      if (this._userId == this._profileId) {
       this._deleteButton.classList.add('element__delete-button_active');
     }
+    this._setEventListeners();
 
     this._element.querySelector(".element__like-counter").textContent = this._likes.length;
     this._element.querySelector(".element__title").textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    this._setEventListeners();
+
 
     return this._element;
   }
@@ -64,6 +65,12 @@ constructor({data, profileInfo, templateSelector, handleCardClick, handleDeleteC
     }
   };
 
+  _verifyLike() {
+    return this._likes.some((item) => {
+      return item._id == this._profileId;
+    });
+  }
+
   _addLikeCounter(data) {
     this._element.querySelector(".element__like-counter").textContent = data.likes.length;
   }
@@ -72,12 +79,7 @@ constructor({data, profileInfo, templateSelector, handleCardClick, handleDeleteC
     this._handleCardClick(data);
   }
 
-  _verifyLike() {
-    return Boolean(this._likes.find((item) => {
-      item._id == this._profileId;
-    }
-    ));
-  }
+
 
   _setEventListeners() {
     this._deleteButton.addEventListener("click", () => this._handleDeleteClick(this._card._id));
