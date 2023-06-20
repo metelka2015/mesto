@@ -52,6 +52,7 @@ const placeNameInput = addButtonPopup.querySelector(
 const placeLinkInput = addButtonPopup.querySelector(
   ".popup__input_type_placelink"
 );
+const editAvatarButton = document.querySelector('.profile__update-avatar');
 
 export {
   initialCards,
@@ -66,4 +67,5 @@ export {
   addButtonPopupForm,
   placeNameInput,
   placeLinkInput,
+  editAvatarButton,
 };

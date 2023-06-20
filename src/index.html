@@ -13,7 +13,10 @@
     <main class="content">
       <section class="profile">
         <div class="profile__container">
-          <img src="<%=require('./images/profile-avatar.jpg')%>" alt="фотография в профиле" class="profile__avatar">
+          <div class="profile__avatar-container">
+            <div class="profile__update-avatar"></div>
+            <img src="<%=require('./images/profile-avatar.jpg')%>" alt="фотография в профиле" class="profile__avatar" name="avatar">
+          </div>
           <div class="profile__info">
             <div class="profile__title-container">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -43,7 +46,7 @@
           <span id="error-name" class="popup__error-message"></span>
         </label>
         <label class="popup__label">
-          <input id="job" class="popup__input popup__input_type_job" required minlength="2" maxlength="200" name="job" autocomplete="off" placeholder="О себе">
+          <input id="job" class="popup__input popup__input_type_job" required minlength="2" maxlength="200" name="about" autocomplete="off" placeholder="О себе">
           <span id="error-job" class="popup__error-message"></span>
         </label>
         <button class="popup__submit" type="submit">Сохранить</button>
@@ -76,6 +79,28 @@
       </figure>
     </div>
   </section>
+  <section class="popup popup_type_delete">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <form class="popup__form">
+        <button class="popup__submit-button" type="submit"><span class="popup__button-span">Да</span></button>
+      </form>
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
+    </div>
+  </section>
+  <section class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button class="popup__close" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form popup__form_type_avatar" name="popup-avatar-form" novalidate>
+        <label class="popup__label">
+          <input id="placelink" type="url" class="popup__input popup__input_type_placelink" required name="avatar" placeholder="Ссылка на картинку" autocomplete="off">
+          <span id="error-placelink" class="popup__error-message"></span>
+        </label>
+        <button class="popup__submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
 
   <template class="place-template">
     <li class="element">
@@ -83,7 +108,10 @@
       <button class="element__delete-button" type="button" aria-label="Удалить"></button>
       <div class="element__container">
         <h2 class="element__title">Карачаевск</h2>
-        <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
+        <div class="element__like-container">
+          <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
+          <span class="element__like-counter"></span>
+        </div>
       </div>
     </li>
   </template>
