@@ -21,6 +21,12 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  /*setInputValues(inputValues) {
+    this._inputList.forEach((input) => {
+      input.value = inputValues[input.name]
+    })
+  }*/
+
   setEventListeners() {
     super.setEventListeners();
     this._popup.addEventListener("submit", (evt) => {
@@ -31,9 +37,6 @@ export default class PopupWithForm extends Popup {
   }
 
   setButtonText(isSending) {
-    /*if (this._submitButton.textContent = isSending) {
-      this._submitButton.textContent = 'Сохранение...';
-    } */
     this._submitButton.textContent = isSending ? 'Сохранение...' : this._buttonText;
   }
 
