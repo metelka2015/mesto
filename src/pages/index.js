@@ -1,10 +1,10 @@
-import Card from "../scripts/Card.js";
-import FormValidator from "../scripts/FormValidator.js";
-import { initialCards, validationConfig } from "../scripts/constants.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import UserInfo from "../scripts/UserInfo.js";
-import Section from "../scripts/Section.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import { initialCards, validationConfig } from "../utils/constants.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
 import {
   editButtonLink,
   editButtonPopup,
@@ -17,10 +17,10 @@ import {
   placeNameInput,
   placeLinkInput,
   editAvatarButton,
-} from "../scripts/constants.js";
+} from "../utils/constants.js";
 import "./index.css";
-import Api from "../scripts/Api.js";
-import PopupDeleteCard from "../scripts/PopupDeleteCard.js";
+import Api from "../components/Api.js";
+import PopupDeleteCard from "../components/PopupDeleteCard.js";
 
 const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-68",
