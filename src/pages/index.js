@@ -84,9 +84,7 @@ const popupFormProfile = new PopupWithForm(".popup_type_profile", (data) => {
     .catch((error) => {
       console.log(error);
     })
-    .finally(() => {
-      popupFormProfile.setButtonText(false);
-    });
+    .finally(() => popupFormProfile.setButtonText(false));
 });
 popupFormProfile.setEventListeners();
 
@@ -106,7 +104,7 @@ const popupFormCard = new PopupWithForm(".popup_type_place", (cardData) => {
     })
     .catch((error) => console.log(error))
     .finally(() => {
-      popupFormProfile.setButtonText(false);
+      popupFormCard.setButtonText(false);
     });
 });
 popupFormCard.setEventListeners();

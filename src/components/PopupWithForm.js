@@ -9,7 +9,7 @@ export default class PopupWithForm extends Popup {
     this._inputs = Array.from(
       this._popupForm.querySelectorAll(".popup__input")
     );
-    this._buttonText = this._submitButton.texcontent;
+    this._buttonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
@@ -35,8 +35,10 @@ export default class PopupWithForm extends Popup {
     });
   }
 
+
   setButtonText(isSending) {
     this._submitButton.textContent = isSending ? 'Сохранение...' : this._buttonText;
+
   }
 
   close() {
